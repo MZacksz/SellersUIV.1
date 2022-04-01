@@ -242,25 +242,14 @@ CashView.TextWrapped = true
 CashView.MouseButton1Click:connect(function()
 	local player = game.Players
 	
-	if PlayerName.Text == player.LocalPlayer.Name then
-		game:GetService("StarterGui"):SetCore("SendNotification", {
-			Title = "Shoot!";
-			Text = "You cannot view cash by yourself you already know amount of your cash BRUH!";
-			Icon = "";
-			Duration = 4;
-		})
-	end
-	
-	if not PlayerName.Text == player.LocalPlayer.Name then
-		print(player[PlayerName.Text].Name .. " has " .. player[PlayerName.Text].DataFolder.Currency.Value .. " cash~!")
+	print(player[PlayerName.Text].Name .. " has " .. player[PlayerName.Text].DataFolder.Currency.Value .. " cash~!")
 		
-		game:GetService("StarterGui"):SetCore("SendNotification", {
-			Title = "Printed!";
-			Text = "Type /console or PRESS F9 to see the cash view!";
-			Icon = "";
-			Duration = 5;
-		})
-	end
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = "Printed!";
+		Text = "Type /console or PRESS F9 to see the cash view!";
+		Icon = "";
+		Duration = 5;
+	})
 end)
 
 COMINGSOON.Name = "COMINGSOON!"
