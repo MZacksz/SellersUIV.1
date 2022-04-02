@@ -323,9 +323,11 @@ AutoDrop.MouseButton1Click:connect(function()
 		print("Auto Drop ON")
 	end
 
-	while _G.AutoDrop == true do
-		print('Working')
-		wait()
+	if _G.AutoDrop == true then
+		while true do
+			print('working')
+			wait()
+		end
 	end
 end)
 
