@@ -18,6 +18,7 @@ local Go = Instance.new("TextButton")
 local CashView = Instance.new("TextButton")
 local COMINGSOON = Instance.new("TextLabel")
 local UIGradient_2 = Instance.new("UIGradient")
+local UICorner_3 = Instance.new("UICorner")
 
 DropCasher.Name = "DropCasher"
 DropCasher.Parent = game.CoreGui
@@ -31,6 +32,9 @@ Main.Position = UDim2.new(0.373768061, 0, 0.352760792, 0)
 Main.Size = UDim2.new(0.492797583, 0, 0.457668722, 0)
 Main.Active = true
 Main.Draggable = true
+
+UICorner_3.Parent = Main
+UICorner_3.CornerRadius = "0, 15"
 
 Button.Name = "Button"
 Button.Parent = Main
@@ -242,14 +246,25 @@ CashView.TextWrapped = true
 CashView.MouseButton1Click:connect(function()
 	local player = game.Players
 	
-	print(player[PlayerName.Text].Name .. " has " .. player[PlayerName.Text].DataFolder.Currency.Value .. " cash~!")
+	if PlayerName.Text == player.LocalPlayer.Name then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Shoot!";
+			Text = "You cannot view cash by yourself you already know amount of your cash BRUH!";
+			Icon = "";
+			Duration = 4;
+		})
+	end
+	
+	if not PlayerName.Text == player.LocalPlayer.Name then
+		print(player[PlayerName.Text].Name .. " has " .. player[PlayerName.Text].DataFolder.Currency.Value .. " cash~!")
 		
-	game:GetService("StarterGui"):SetCore("SendNotification", {
-		Title = "Printed!";
-		Text = "Type /console or PRESS F9 to see the cash view!";
-		Icon = "";
-		Duration = 5;
-	})
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Printed!";
+			Text = "Type /console or PRESS F9 to see the cash view!";
+			Icon = "";
+			Duration = 5;
+		})
+	end
 end)
 
 COMINGSOON.Name = "COMINGSOON!"
