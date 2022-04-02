@@ -272,8 +272,17 @@ CashView.TextSize = 14.000
 CashView.TextWrapped = true
 CashView.MouseButton1Click:connect(function()
 	local player = game.Players
+	
+	Comma = function(x)
+		local a = x
+		while true do  
+			a, k = string.gsub(a, "^(-?%d+)(%d%d%d)", '%1,%2')
+			if k == 0 then break end
+		end
+		return a
+	end
 
-	CashPlayer.Text = player[PlayerName.Name] .. " Cash : " .. player[PlayerName.Text].DataFolder.Currency.Value
+	CashPlayer.Text = player[PlayerName.Text] .. " Cash : " .. Comma(player[PlayerName.Text].DataFolder.Currency.Value)
 end)
 
 UICorner_13.Parent = CashView
@@ -324,7 +333,7 @@ AutoDrop.MouseButton1Click:connect(function()
 
 				game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
 				if drop == false then
-					print("Auto Drop has been off")
+					print("Auto Drop OFF!")
 					break
 				end
 			end
