@@ -316,15 +316,13 @@ AutoDrop.MouseButton1Click:connect(function()
 	if _G.AutoDrop == false then
 		_G.AutoDrops = true
 		AutoDrop.Text = "Auto Drop: ON"
-		print("Auto Drop ON")
 	else
 		_G.AutoDrops = false
 		AutoDrop.Text = "Auto Drop: OFF"
-		print("Auto Drop ON")
 	end
 
 	if _G.AutoDrop == true then
-		while true do
+		while _G.AutoDrop == true do
 			print('working')
 			wait()
 		end
