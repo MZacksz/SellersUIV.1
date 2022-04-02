@@ -341,7 +341,7 @@ AutoDrop.MouseButton1Click:connect(function()
 		end
 	else
 		drop = false
-		script.Parent.Text = "Auto Drop: OFF"
+		AutoDrop.Text = "Auto Drop: OFF"
 	end
 end)
 
