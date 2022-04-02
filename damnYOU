@@ -315,20 +315,18 @@ AutoDrop.MouseButton1Click:connect(function()
 	if drop == false and AutoDrop.Text == "Auto Drop: OFF" then
 		drop = true
 		AutoDrop.Text = "Auto Drop: ON"
-		while true do
+		while wait(1) do
 			if drop == true then
+				print("Processing Drop.")
 				local args = {
 					[1] = "DropMoney",
 					[2] = "10000"
 				}
-
 				game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
 				if drop == false then
-					print("Auto Drop OFF!")
 					break
 				end
 			end
-			wait(1)
 		end
 	else
 		drop = false
