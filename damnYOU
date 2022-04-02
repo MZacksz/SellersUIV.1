@@ -272,17 +272,8 @@ CashView.TextSize = 14.000
 CashView.TextWrapped = true
 CashView.MouseButton1Click:connect(function()
 	local player = game.Players
-	
-	Comma = function(x)
-		local a = x
-		while true do  
-			a, k = string.gsub(a, "^(-?%d+)(%d%d%d)", '%1,%2')
-			if k == 0 then break end
-		end
-		return a
-	end
-	
-	CashPlayer.Text = player[PlayerName.Name] .. " Cash : " .. Comma(player[PlayerName.Text].DataFolder.Currency.Value)
+
+	CashPlayer.Text = player[PlayerName.Name] .. " Cash : " .. player[PlayerName.Text].DataFolder.Currency.Value
 end)
 
 UICorner_13.Parent = CashView
@@ -321,31 +312,28 @@ AutoDrop.TextSize = 14.000
 AutoDrop.TextWrapped = true
 AutoDrop.MouseButton1Click:connect(function()
 	local drop = false
+	if drop == false and AutoDrop.Text == "Auto Drop: OFF" then
+		drop = true
+		AutoDrop.Text = "Auto Drop: ON"
+		while true do
+			if drop == true then
+				local args = {
+					[1] = "DropMoney",
+					[2] = "10000"
+				}
 
-	script.Parent.MouseButton1Click:Connect(function()
-		if drop == false and script.Parent.Text == "Auto Drop: OFF" then
-			drop = true
-			script.Parent.Text = "Auto Drop: ON"
-			while true do
-				if drop == true then
-					local args = {
-						[1] = "DropMoney",
-						[2] = "10000"
-					}
-
-					game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
-					if drop == false then
-						print("Auto Drop has been off")
-						break
-					end
+				game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
+				if drop == false then
+					print("Auto Drop has been off")
+					break
 				end
-				wait(1)
 			end
-		else
-			drop = false
-			script.Parent.Text = "Auto Drop: OFF"
+			wait(1)
 		end
-	end)
+	else
+		drop = false
+		script.Parent.Text = "Auto Drop: OFF"
+	end
 end)
 
 UICorner_14.Parent = AutoDrop
@@ -375,16 +363,16 @@ local function UYTU_fake_script()
 
 	-- Main Frame
 	local Main = script.Parent
-	
+
 	-- Frame
 	local TeleportFrame = script.Parent.TeleportFrame
 	local PlayerFrame = script.Parent.PlayerFrame
-	
+
 	-- Button
 	local Button = script.Parent.Buttons
 	local Teleport = Button.Teleport
 	local Player = Button.Player
-	
+
 	-- [[ Function ]] --
 	Teleport.MouseButton1Click:Connect(function()
 		if TeleportFrame.Visible == false and PlayerFrame.Visible == true then
@@ -392,7 +380,7 @@ local function UYTU_fake_script()
 			PlayerFrame.Visible = false
 		end
 	end)
-	
+
 	Player.MouseButton1Click:Connect(function()
 		if PlayerFrame.Visible == false and TeleportFrame.Visible == true then
 			PlayerFrame.Visible = true
