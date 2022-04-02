@@ -311,21 +311,20 @@ AutoDrop.TextScaled = true
 AutoDrop.TextSize = 14.000
 AutoDrop.TextWrapped = true
 AutoDrop.MouseButton1Click:connect(function()
-	_G.AutoDrop = false
+	_G.AutoDrops = false;
 	
 	if _G.AutoDrop == false then
-		_G.AutoDrop = true
+		_G.AutoDrops = true
+		AutoDrop.Text = "Auto Drop: ON"
+		print('Auto Drop ON")
 	else
-		_G.AutoDrop = false
+		_G.AutoDrops = false
+		AutoDrop.Text = "Auto Drop: OFF"
 	end
 	
 	while _G.AutoDrop == true do
-		local args = {
-			[1] = "DropMoney",
-			[2] = "10000"
-		}
-		game:GetService("ReplicatedStorage").MainEvent:FireServer(unpack(args))
-		wait(0.45)
+		print('Working')
+		wait()
 	end
 end)
 
