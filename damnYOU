@@ -312,16 +312,17 @@ AutoDrop.TextSize = 14.000
 AutoDrop.TextWrapped = true
 AutoDrop.MouseButton1Click:connect(function()
 	_G.AutoDrops = false;
-	
+
 	if _G.AutoDrop == false then
 		_G.AutoDrops = true
 		AutoDrop.Text = "Auto Drop: ON"
-		print('Auto Drop ON")
+		print("Auto Drop ON")
 	else
 		_G.AutoDrops = false
 		AutoDrop.Text = "Auto Drop: OFF"
+		print("Auto Drop ON")
 	end
-	
+
 	while _G.AutoDrop == true do
 		print('Working')
 		wait()
