@@ -25,14 +25,13 @@ local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
 local GoTo = Instance.new("TextButton")
 local UICorner_12 = Instance.new("UICorner")
 local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
+local CashPlayer = Instance.new("TextLabel")
+local UITextSizeConstraint_4 = Instance.new("UITextSizeConstraint")
 local CashView = Instance.new("TextButton")
 local UICorner_13 = Instance.new("UICorner")
 local UITextSizeConstraint_3 = Instance.new("UITextSizeConstraint")
 local CashPlayer = Instance.new("TextLabel")
 local UITextSizeConstraint_4 = Instance.new("UITextSizeConstraint")
-local AutoDrop = Instance.new("TextButton")
-local UICorner_14 = Instance.new("UICorner")
-local UITextSizeConstraint_5 = Instance.new("UITextSizeConstraint")
 local Titles = Instance.new("TextLabel")
 local UIGradient = Instance.new("UIGradient")
 
@@ -258,6 +257,23 @@ UICorner_12.Parent = GoTo
 UITextSizeConstraint_2.Parent = GoTo
 UITextSizeConstraint_2.MaxTextSize = 25
 
+CashPlayer.Name = "CashPlayer"
+CashPlayer.Parent = PlayerFrame
+CashPlayer.AnchorPoint = Vector2.new(0.5, 0.5)
+CashPlayer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CashPlayer.BackgroundTransparency = 1.000
+CashPlayer.Position = UDim2.new(0.499620706, 0, 0.567181706, 0)
+CashPlayer.Size = UDim2.new(0.767815411, 0, 0.10601528, 0)
+CashPlayer.Font = Enum.Font.GothamBlack
+CashPlayer.Text = "Unknown Cash : N/A"
+CashPlayer.TextColor3 = Color3.fromRGB(255, 255, 255)
+CashPlayer.TextScaled = true
+CashPlayer.TextSize = 14.000
+CashPlayer.TextWrapped = true
+
+UITextSizeConstraint_4.Parent = CashPlayer
+UITextSizeConstraint_4.MaxTextSize = 18
+
 CashView.Name = "CashView"
 CashView.Parent = PlayerFrame
 CashView.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -280,59 +296,6 @@ UICorner_13.Parent = CashView
 
 UITextSizeConstraint_3.Parent = CashView
 UITextSizeConstraint_3.MaxTextSize = 25
-
-CashPlayer.Name = "CashPlayer"
-CashPlayer.Parent = PlayerFrame
-CashPlayer.AnchorPoint = Vector2.new(0.5, 0.5)
-CashPlayer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-CashPlayer.BackgroundTransparency = 1.000
-CashPlayer.Position = UDim2.new(0.499620706, 0, 0.567181706, 0)
-CashPlayer.Size = UDim2.new(0.767815411, 0, 0.10601528, 0)
-CashPlayer.Font = Enum.Font.GothamBlack
-CashPlayer.Text = "Unknown Cash : N/A"
-CashPlayer.TextColor3 = Color3.fromRGB(255, 255, 255)
-CashPlayer.TextScaled = true
-CashPlayer.TextSize = 14.000
-CashPlayer.TextWrapped = true
-
-UITextSizeConstraint_4.Parent = CashPlayer
-UITextSizeConstraint_4.MaxTextSize = 18
-
-AutoDrop.Name = "AutoDrop"
-AutoDrop.Parent = PlayerFrame
-AutoDrop.AnchorPoint = Vector2.new(0.5, 0.5)
-AutoDrop.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
-AutoDrop.Position = UDim2.new(0.811072648, 0, 0.894062221, 0)
-AutoDrop.Size = UDim2.new(0.31577757, 0, 0.162556767, 0)
-AutoDrop.Font = Enum.Font.GothamBlack
-AutoDrop.Text = "Auto Drop: OFF"
-AutoDrop.TextColor3 = Color3.fromRGB(255, 255, 255)
-AutoDrop.TextScaled = true
-AutoDrop.TextSize = 14.000
-AutoDrop.TextWrapped = true
-AutoDrop.MouseButton1Click:connect(function()
-	_G.AutoDrops = false;
-
-	if _G.AutoDrop == false then
-		_G.AutoDrops = true
-		AutoDrop.Text = "Auto Drop: ON"
-	else
-		_G.AutoDrops = false
-		AutoDrop.Text = "Auto Drop: OFF"
-	end
-
-	if _G.AutoDrop == true then
-		while _G.AutoDrop == true do
-			print('working')
-			wait()
-		end
-	end
-end)
-
-UICorner_14.Parent = AutoDrop
-
-UITextSizeConstraint_5.Parent = AutoDrop
-UITextSizeConstraint_5.MaxTextSize = 25
 
 Titles.Name = "Titles"
 Titles.Parent = Main
