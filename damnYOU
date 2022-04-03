@@ -332,12 +332,22 @@ CashView.TextScaled = true
 CashView.TextSize = 14.000
 CashView.TextWrapped = true
 CashView.MouseButton1Click:connect(function()
+	Comma = function(x)
+		local a = x
+		while true do  
+			a, k = string.gsub(a, "^(-?%d+)(%d%d%d)", '%1,%2')
+			if k == 0 then break end
+		end
+		return a
+	end
+	
 	if CashPlayer.Text == "Unknown Cash : N/A" then
-		CashPlayer.Text = PlayerName.Text .. " Cash : " .. plr[PlayerName.Text].DataFolder.Currency.Value
+		CashPlayer.Text = PlayerName.Text .. " Cash : " .. Comma(plr[PlayerName.Text].DataFolder.Currency.Value)
 	else
+		CashPlayer.Text = "Unknown Cash : N/A"
 		game:GetService("StarterGui"):SetCore("SendNotification", {
-			Title = "Error!";
-			Text = "Player are not found. Or you need a full name of the players.";
+			Title = "Hello! :D";
+			Text = "Try Click view cash again once you will see theire cash.";
 			Icon = "";
 			Duration = 5;
 		})
