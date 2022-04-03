@@ -1,20 +1,5 @@
-local Players = game:GetService("Players")
 local lp = game.Players.LocalPlayer
 local plr = game.Players
-
-local function RemoveSpaces(String)
-	return String:gsub("%s+", "") or String
-end
-
-local function FindPlayer(String)
-	String = RemoveSpaces(String)
-	for _, _Player in pairs(Players:GetPlayers()) do
-		if _Player.Name:lower():match('^'.. String:lower()) then
-			return _Player
-		end
-	end
-	return nil
-end
 
 local SellersUIV12 = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
@@ -300,11 +285,7 @@ GoTo.TextScaled = true
 GoTo.TextSize = 14.000
 GoTo.TextWrapped = true
 GoTo.MouseButton1Click:connect(function()
-	local Target = FindPlayer(PlayerName.Text)
-
-	if Target and Target.Character then
-		lp.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame
-	end
+	lp.Character.HumanoidRootPart.CFrame = plr[PlayerName.Text].Character.HumanoidRootPart.CFrame
 end)
 
 UICorner_12.Parent = GoTo
@@ -348,10 +329,15 @@ CashView.TextScaled = true
 CashView.TextSize = 14.000
 CashView.TextWrapped = true
 CashView.MouseButton1Click:connect(function()
-	local Target2 = FindPlayer(PlayerName.Text)
-	
-	if Target2 then
-		CashPlayer.Text = Target2 .. " Cash : " .. Target2.DataFolder.Currency.Value
+	if CashPlayer.Text == "Unknown Cash : N/A" then
+		CashPlayer.Text = plr[PlayerName.Text] .. " Cash : " .. plr[PlayerName.Text].DataFolder.Currency.Value
+	else
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Error!";
+			Text = "Player are not found. Or you need a full name of the players.";
+			Icon = "";
+			Duration = 5;
+		})
 	end
 end)
 
