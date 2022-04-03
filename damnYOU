@@ -38,13 +38,13 @@ local GoTo = Instance.new("TextButton")
 local UICorner_12 = Instance.new("UICorner")
 local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
 local UIAspectRatioConstraint_10 = Instance.new("UIAspectRatioConstraint")
+local CashPlayer = Instance.new("TextLabel")
+local UITextSizeConstraint_4 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_12 = Instance.new("UIAspectRatioConstraint")
 local CashView = Instance.new("TextButton")
 local UICorner_13 = Instance.new("UICorner")
 local UITextSizeConstraint_3 = Instance.new("UITextSizeConstraint")
 local UIAspectRatioConstraint_11 = Instance.new("UIAspectRatioConstraint")
-local CashPlayer = Instance.new("TextLabel")
-local UITextSizeConstraint_4 = Instance.new("UITextSizeConstraint")
-local UIAspectRatioConstraint_12 = Instance.new("UIAspectRatioConstraint")
 local AutoDrop = Instance.new("TextButton")
 local UICorner_14 = Instance.new("UICorner")
 local UITextSizeConstraint_5 = Instance.new("UITextSizeConstraint")
@@ -285,7 +285,10 @@ GoTo.TextScaled = true
 GoTo.TextSize = 14.000
 GoTo.TextWrapped = true
 GoTo.MouseButton1Click:connect(function()
-	lp.Character.HumanoidRootPart.CFrame = plr[PlayerName.Text].Character.HumanoidRootPart.CFrame
+	local p1 = lp.Character.HumanoidRootPart
+	local p2 = PlayerName.Text
+	
+	p1.CFrame = plr[p2].Character.HumanoidRootPart.CFrame
 end)
 
 UICorner_12.Parent = GoTo
