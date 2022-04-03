@@ -1,3 +1,21 @@
+local Players = game:GetService("Players")
+local lp = game.Players.LocalPlayer
+local plr = game.Players
+
+local function RemoveSpaces(String)
+	return String:gsub("%s+", "") or String
+end
+
+local function FindPlayer(String)
+	String = RemoveSpaces(String)
+	for _, _Player in pairs(Players:GetPlayers()) do
+		if _Player.Name:lower():match('^'.. String:lower()) then
+			return _Player
+		end
+	end
+	return nil
+end
+
 local SellersUIV12 = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -5,35 +23,52 @@ local TeleportFrame = Instance.new("Frame")
 local UICorner_2 = Instance.new("UICorner")
 local AdminBase = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 local Bank = Instance.new("TextButton")
 local UICorner_4 = Instance.new("UICorner")
+local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
 local Gas = Instance.new("TextButton")
 local UICorner_5 = Instance.new("UICorner")
+local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
 local SafeZone = Instance.new("TextButton")
 local UICorner_6 = Instance.new("UICorner")
+local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
 local Buttons = Instance.new("Frame")
 local UICorner_7 = Instance.new("UICorner")
 local Teleport = Instance.new("TextButton")
 local UICorner_8 = Instance.new("UICorner")
+local UIAspectRatioConstraint_6 = Instance.new("UIAspectRatioConstraint")
 local Player = Instance.new("TextButton")
 local UICorner_9 = Instance.new("UICorner")
+local UIAspectRatioConstraint_7 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_8 = Instance.new("UIAspectRatioConstraint")
 local PlayerFrame = Instance.new("Frame")
 local UICorner_10 = Instance.new("UICorner")
 local PlayerName = Instance.new("TextBox")
 local UICorner_11 = Instance.new("UICorner")
 local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_9 = Instance.new("UIAspectRatioConstraint")
 local GoTo = Instance.new("TextButton")
 local UICorner_12 = Instance.new("UICorner")
 local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
-local CashPlayer = Instance.new("TextLabel")
-local UITextSizeConstraint_4 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_10 = Instance.new("UIAspectRatioConstraint")
 local CashView = Instance.new("TextButton")
 local UICorner_13 = Instance.new("UICorner")
 local UITextSizeConstraint_3 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_11 = Instance.new("UIAspectRatioConstraint")
 local CashPlayer = Instance.new("TextLabel")
 local UITextSizeConstraint_4 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_12 = Instance.new("UIAspectRatioConstraint")
+local AutoDrop = Instance.new("TextButton")
+local UICorner_14 = Instance.new("UICorner")
+local UITextSizeConstraint_5 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_13 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_14 = Instance.new("UIAspectRatioConstraint")
 local Titles = Instance.new("TextLabel")
 local UIGradient = Instance.new("UIGradient")
+local UIAspectRatioConstraint_15 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_16 = Instance.new("UIAspectRatioConstraint")
 
 SellersUIV12.Name = "SellersUI V.1.2"
 SellersUIV12.Parent = game.CoreGui
@@ -85,6 +120,9 @@ end)
 UICorner_3.CornerRadius = UDim.new(0, 10)
 UICorner_3.Parent = AdminBase
 
+UIAspectRatioConstraint.Parent = AdminBase
+UIAspectRatioConstraint.AspectRatio = 5.746
+
 Bank.Name = "Bank"
 Bank.Parent = TeleportFrame
 Bank.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -106,6 +144,9 @@ end)
 
 UICorner_4.CornerRadius = UDim.new(0, 10)
 UICorner_4.Parent = Bank
+
+UIAspectRatioConstraint_2.Parent = Bank
+UIAspectRatioConstraint_2.AspectRatio = 5.746
 
 Gas.Name = "Gas"
 Gas.Parent = TeleportFrame
@@ -129,6 +170,9 @@ end)
 UICorner_5.CornerRadius = UDim.new(0, 10)
 UICorner_5.Parent = Gas
 
+UIAspectRatioConstraint_3.Parent = Gas
+UIAspectRatioConstraint_3.AspectRatio = 5.746
+
 SafeZone.Name = "SafeZone"
 SafeZone.Parent = TeleportFrame
 SafeZone.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -150,6 +194,12 @@ end)
 
 UICorner_6.CornerRadius = UDim.new(0, 10)
 UICorner_6.Parent = SafeZone
+
+UIAspectRatioConstraint_4.Parent = SafeZone
+UIAspectRatioConstraint_4.AspectRatio = 5.746
+
+UIAspectRatioConstraint_5.Parent = TeleportFrame
+UIAspectRatioConstraint_5.AspectRatio = 1.606
 
 Buttons.Name = "Buttons"
 Buttons.Parent = Main
@@ -177,6 +227,9 @@ Teleport.TextWrapped = true
 UICorner_8.CornerRadius = UDim.new(0, 15)
 UICorner_8.Parent = Teleport
 
+UIAspectRatioConstraint_6.Parent = Teleport
+UIAspectRatioConstraint_6.AspectRatio = 4.769
+
 Player.Name = "Player"
 Player.Parent = Buttons
 Player.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
@@ -191,6 +244,12 @@ Player.TextWrapped = true
 
 UICorner_9.CornerRadius = UDim.new(0, 15)
 UICorner_9.Parent = Player
+
+UIAspectRatioConstraint_7.Parent = Player
+UIAspectRatioConstraint_7.AspectRatio = 4.769
+
+UIAspectRatioConstraint_8.Parent = Buttons
+UIAspectRatioConstraint_8.AspectRatio = 0.440
 
 PlayerFrame.Name = "PlayerFrame"
 PlayerFrame.Parent = Main
@@ -225,6 +284,9 @@ UICorner_11.Parent = PlayerName
 UITextSizeConstraint.Parent = PlayerName
 UITextSizeConstraint.MaxTextSize = 20
 
+UIAspectRatioConstraint_9.Parent = PlayerName
+UIAspectRatioConstraint_9.AspectRatio = 10.461
+
 GoTo.Name = "GoTo"
 GoTo.Parent = PlayerFrame
 GoTo.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -238,17 +300,10 @@ GoTo.TextScaled = true
 GoTo.TextSize = 14.000
 GoTo.TextWrapped = true
 GoTo.MouseButton1Click:connect(function()
-	local Player = game:GetService("Players").LocalPlayer
+	local Target = FindPlayer(PlayerName.Text)
 
-	Player.Character.HumanoidRootPart.CFrame = game.Players[PlayerName.Text].Character.HumanoidRootPart.CFrame
-
-	if PlayerName.Text == Player.Name then
-		game:GetService("StarterGui"):SetCore("SendNotification", {
-			Title = "Shoot!";
-			Text = "You cannot teleport to yourself.";
-			Icon = "";
-			Duration = 5;
-		})
+	if Target and Target.Character then
+		lp.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame
 	end
 end)
 
@@ -256,6 +311,9 @@ UICorner_12.Parent = GoTo
 
 UITextSizeConstraint_2.Parent = GoTo
 UITextSizeConstraint_2.MaxTextSize = 25
+
+UIAspectRatioConstraint_10.Parent = GoTo
+UIAspectRatioConstraint_10.AspectRatio = 7.929
 
 CashPlayer.Name = "CashPlayer"
 CashPlayer.Parent = PlayerFrame
@@ -274,6 +332,9 @@ CashPlayer.TextWrapped = true
 UITextSizeConstraint_4.Parent = CashPlayer
 UITextSizeConstraint_4.MaxTextSize = 18
 
+UIAspectRatioConstraint_12.Parent = CashPlayer
+UIAspectRatioConstraint_12.AspectRatio = 11.628
+
 CashView.Name = "CashView"
 CashView.Parent = PlayerFrame
 CashView.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -287,15 +348,23 @@ CashView.TextScaled = true
 CashView.TextSize = 14.000
 CashView.TextWrapped = true
 CashView.MouseButton1Click:connect(function()
-	local player = game.Players
-
-	CashPlayer.Text = player[PlayerName.Text] .. " Cash : " .. player[PlayerName.Text].DataFolder.Currency.Value
+	local Target2 = FindPlayer(PlayerName.Text)
+	
+	if Target2 then
+		CashPlayer.Text = Target2 .. " Cash : " .. Target2.DataFolder.Currency.Value
+	end
 end)
 
 UICorner_13.Parent = CashView
 
 UITextSizeConstraint_3.Parent = CashView
 UITextSizeConstraint_3.MaxTextSize = 25
+
+UIAspectRatioConstraint_11.Parent = CashView
+UIAspectRatioConstraint_11.AspectRatio = 7.929
+
+UIAspectRatioConstraint_14.Parent = PlayerFrame
+UIAspectRatioConstraint_14.AspectRatio = 1.606
 
 Titles.Name = "Titles"
 Titles.Parent = Main
@@ -314,21 +383,27 @@ Titles.TextWrapped = true
 UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 4)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 115, 0))}
 UIGradient.Parent = Titles
 
-local function UYTU_fake_script()
+UIAspectRatioConstraint_15.Parent = Titles
+UIAspectRatioConstraint_15.AspectRatio = 15.423
+
+UIAspectRatioConstraint_16.Parent = Main
+UIAspectRatioConstraint_16.AspectRatio = 1.993
+
+local function CGOB_fake_script()
 	local script = Instance.new('LocalScript', Main)
 
 	-- Main Frame
 	local Main = script.Parent
-
+	
 	-- Frame
 	local TeleportFrame = script.Parent.TeleportFrame
 	local PlayerFrame = script.Parent.PlayerFrame
-
+	
 	-- Button
 	local Button = script.Parent.Buttons
 	local Teleport = Button.Teleport
 	local Player = Button.Player
-
+	
 	-- [[ Function ]] --
 	Teleport.MouseButton1Click:Connect(function()
 		if TeleportFrame.Visible == false and PlayerFrame.Visible == true then
@@ -336,7 +411,7 @@ local function UYTU_fake_script()
 			PlayerFrame.Visible = false
 		end
 	end)
-
+	
 	Player.MouseButton1Click:Connect(function()
 		if PlayerFrame.Visible == false and TeleportFrame.Visible == true then
 			PlayerFrame.Visible = true
@@ -344,4 +419,4 @@ local function UYTU_fake_script()
 		end
 	end)
 end
-coroutine.wrap(UYTU_fake_script)()
+coroutine.wrap(CGOB_fake_script)()
